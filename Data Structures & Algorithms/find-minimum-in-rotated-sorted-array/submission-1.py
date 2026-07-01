@@ -1,0 +1,20 @@
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        res = nums[0]
+        l, r = 0, len(nums) - 1
+
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]: #m and l in the same segment
+                l = m + 1
+            else:                 #m and r in the same segment
+                r = m - 1
+    
+        return res
+
+
